@@ -16,24 +16,24 @@ public class ContatoController {
     @Autowired
     private ContatoRepository contatoRepository;
 
-    @PostMapping("/contato")
+    @PostMapping("create/contato")
     public Contato createContato(@RequestBody Contato newContato){
         return contatoRepository.save(newContato);
     }
 
-    @GetMapping("/contato")
+    @GetMapping("/get/contato")
     public List<Contato> getContatos(){
         return contatoRepository.findAll();
     }
 
-    @GetMapping("/contato/key={id}")
+    @GetMapping("/get/contato/key={id}")
     public Contato getContatoById(@PathVariable Long id) {
         return contatoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Contato não encontrado com o id: " + id));
     }
 
-    @PutMapping("/contato/key={id}")
+    @PutMapping("/update/contato/key={id}")
     public Contato updateContato(@RequestBody Contato newContato, @PathVariable Long id){
         return contatoRepository.findById(id)
                 .map(contato -> {
@@ -44,7 +44,7 @@ public class ContatoController {
                         HttpStatus.NOT_FOUND, "Contato não encontrado com o id: " + id));
     }
 
-    @DeleteMapping("/contato/key={id}")
+    @DeleteMapping("/delete/contato/key={id}")
     public String deleteContato(@PathVariable Long id){
         if(!contatoRepository.existsById(id)){
             throw new ResponseStatusException(

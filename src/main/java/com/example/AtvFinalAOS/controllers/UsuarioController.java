@@ -16,24 +16,24 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping("/usuario")
+    @PostMapping("/create/usuario")
     public Usuario createUsuario(@RequestBody Usuario newUsuario){
         return usuarioRepository.save(newUsuario);
     }
 
-    @GetMapping("/usuario")
+    @GetMapping("/get/usuario")
     public List<Usuario> getUsuario(){
         return usuarioRepository.findAll();
     }
 
-    @GetMapping("/usuario/key={id}")
+    @GetMapping("/get/usuario/key={id}")
     public Usuario getUsuarioById(@PathVariable Long id) {
         return usuarioRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Usuario não encontrado com o id: " + id));
     }
 
-    @PutMapping("/usuario/key={id}")
+    @PutMapping("/update/usuario/key={id}")
     public Usuario updateUsuario(@RequestBody Usuario newUsuario, @PathVariable Long id){
         return usuarioRepository.findById(id)
                 .map(usuario -> {
@@ -45,7 +45,7 @@ public class UsuarioController {
                         HttpStatus.NOT_FOUND, "Usuario não encontrado com o id: " + id));
     }
 
-    @DeleteMapping("/usuario/key={id}")
+    @DeleteMapping("/delete/usuario/key={id}")
     public String deleteUsuario(@PathVariable Long id){
         if(!usuarioRepository.existsById(id)){
             throw new ResponseStatusException(

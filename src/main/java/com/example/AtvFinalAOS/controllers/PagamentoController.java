@@ -1,7 +1,8 @@
+package com.example.AtvFinalAOS.controllers;
+
 import com.example.AtvFinalAOS.models.Categoria;
 
 import com.example.AtvFinalAOS.models.Pagamento;
-import com.example.AtvFinalAOS.repository.CategoriaRepository;
 import com.example.AtvFinalAOS.repository.PagamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class PagamentoController {
     @Autowired
     private PagamentoRepository pagamentoRepository;
 
-    @PostMapping("/pagamento")
+    @PostMapping("create/pagamento")
     public Pagamento createCategoria(@RequestBody Pagamento newPagamento){
         return pagamentoRepository.save(newPagamento);
     }
@@ -27,7 +28,7 @@ public class PagamentoController {
         return pagamentoRepository.findAll();
     }
 
-    @GetMapping("/pagamento/key={id}")
+    @GetMapping("get/pagamento/key={id}")
     public Pagamento getPagamentoById(@PathVariable Long id) {
         return pagamentoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(

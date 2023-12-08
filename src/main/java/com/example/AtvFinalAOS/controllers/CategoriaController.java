@@ -17,17 +17,17 @@ public class CategoriaController {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    @PostMapping("/categoria")
+    @PostMapping("/create/categoria")
     public Categoria createCategoria(@RequestBody Categoria newCategoria){
         return categoriaRepository.save(newCategoria);
     }
 
-    @GetMapping("/categoria")
+    @GetMapping("/get/categoria")
     public List<Categoria> getCategoria(){
         return categoriaRepository.findAll();
     }
 
-    @GetMapping("/categoria/key={id}")
+    @GetMapping("get/categoria/key={id}")
     public Categoria getCategoriaById(@PathVariable Long id) {
         return categoriaRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
