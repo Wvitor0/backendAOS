@@ -35,7 +35,7 @@ public class EnderecoController {
                         HttpStatus.NOT_FOUND, "Endereco não encontrado com o id: " + id));
     }
 
-    @PutMapping("/update/endereco/key={id}")
+    @PutMapping("/endereco/key={id}")
     public Endereco updateEndereco(@RequestBody Endereco newEndereco, @PathVariable Long id){
         return enderecoRepository.findById(id)
                 .map(endereco -> {
@@ -49,7 +49,7 @@ public class EnderecoController {
                         HttpStatus.NOT_FOUND, "Endereco não encontrado com o id: " + id));
     }
 
-    @DeleteMapping("/delete/endereco/key={id}")
+    @DeleteMapping("/endereco/key={id}")
     public String deleteEndereco(@PathVariable Long id){
         if(!enderecoRepository.existsById(id)){
             throw new ResponseStatusException(

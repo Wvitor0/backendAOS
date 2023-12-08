@@ -33,7 +33,7 @@ public class UsuarioController {
                         HttpStatus.NOT_FOUND, "Usuario não encontrado com o id: " + id));
     }
 
-    @PutMapping("/update/usuario/key={id}")
+    @PutMapping("/usuario/key={id}")
     public Usuario updateUsuario(@RequestBody Usuario newUsuario, @PathVariable Long id){
         return usuarioRepository.findById(id)
                 .map(usuario -> {
@@ -45,7 +45,7 @@ public class UsuarioController {
                         HttpStatus.NOT_FOUND, "Usuario não encontrado com o id: " + id));
     }
 
-    @DeleteMapping("/delete/usuario/key={id}")
+    @DeleteMapping("/usuario/key={id}")
     public String deleteUsuario(@PathVariable Long id){
         if(!usuarioRepository.existsById(id)){
             throw new ResponseStatusException(

@@ -18,24 +18,24 @@ public class PedidosController {
     @Autowired
     private PedidosRepository pedidosRepository;
 
-    @PostMapping("/pedidos")
+    @PostMapping("/pedido")
     public Pedidos createPedido(@RequestBody Pedidos newPedido){
         return pedidosRepository.save(newPedido);
     }
 
-    @GetMapping("/pedidos")
+    @GetMapping("/pedido")
     public List<Pedidos> getPedidos(){
         return pedidosRepository.findAll();
     }
 
-    @GetMapping("/pedidos/key={id}")
+    @GetMapping("/pedido/key={id}")
     public Pedidos getPedidosById(@PathVariable Long id) {
         return pedidosRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Pedido não encontrado com o id: " + id));
     }
 
-    @PutMapping("/update/pedido/key={id}")
+    @PutMapping("/pedido/key={id}")
     public Pedidos updatePedido(@RequestBody Pedidos newPedido, @PathVariable Long id){
         return pedidosRepository.findById(id)
                 .map(pedido -> {
@@ -46,7 +46,7 @@ public class PedidosController {
                         HttpStatus.NOT_FOUND, "Pedido não encontrado com o id: " + id));
     }
 
-    @DeleteMapping("/delete/pedido/key={id}")
+    @DeleteMapping("/pedido/key={id}")
     public String deletePedido(@PathVariable Long id){
         if(!pedidosRepository.existsById(id)){
             throw new ResponseStatusException(

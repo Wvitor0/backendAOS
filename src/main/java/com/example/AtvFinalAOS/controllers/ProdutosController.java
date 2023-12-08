@@ -16,24 +16,24 @@ public class ProdutosController {
     @Autowired
     private ProdutosRepository produtosRepository;
 
-    @PostMapping("/produtos")
+    @PostMapping("/produto")
     public Produtos createProduto(@RequestBody Produtos newProduto){
         return produtosRepository.save(newProduto);
     }
 
-    @GetMapping("/produtos")
+    @GetMapping("/produto")
     public List<Produtos> getProdutos(){
         return produtosRepository.findAll();
     }
 
-    @GetMapping("/produtos/key={id}")
+    @GetMapping("/produto/key={id}")
     public Produtos getProdutosById(@PathVariable Long id) {
         return produtosRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Produto não encontrado com o id: " + id));
     }
 
-    @PutMapping("/update/produto/key={id}")
+    @PutMapping("/produto/key={id}")
     public Produtos updateProduto(@RequestBody Produtos newProduto, @PathVariable Long id){
         return produtosRepository.findById(id)
                 .map(produto -> {
@@ -46,7 +46,7 @@ public class ProdutosController {
                         HttpStatus.NOT_FOUND, "Produto não encontrado com o id: " + id));
     }
 
-    @DeleteMapping("/delete/produto/key={id}")
+    @DeleteMapping("/produto/key={id}")
     public String deleteProduto(@PathVariable Long id){
         if(!produtosRepository.existsById(id)){
             throw new ResponseStatusException(
